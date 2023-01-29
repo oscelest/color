@@ -24,8 +24,8 @@ export class HWB {
   
   public toString(): string {
     return this.alpha >= 0 && this.alpha < 1
-           ? `hwb(${this.hue}deg, ${this.whiteness * 100}%, ${this.blackness * 100}%, ${this.alpha})`
-           : `hwba(${this.hue}deg, ${this.whiteness * 100}%, ${this.blackness * 100}%)`;
+           ? `hwba(${this.hue}deg, ${this.whiteness * 100}%, ${this.blackness * 100}%, ${this.alpha})`
+           : `hwb(${this.hue}deg, ${this.whiteness * 100}%, ${this.blackness * 100}%)`;
   }
   
   public toHex(): Hex {
