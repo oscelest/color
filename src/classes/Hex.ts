@@ -28,7 +28,7 @@ export class Hex {
     
     const alpha_part = value.slice(6, 8);
     if (alpha_part.length) {
-      const alpha = parseInt(blue_part, 16);
+      const alpha = parseInt(alpha_part, 16);
       if (isNaN(alpha)) throw new Error(`Alpha channel (character 7 and 8) of hex must be characters between 0-9 and a-f. '${alpha_part}' given.`);
       this.alpha = alpha;
     }
@@ -38,7 +38,7 @@ export class Hex {
   }
   
   public toString(): string {
-    const alpha = this.alpha >= 0 && this.alpha < 255 ? (this.alpha).toString(16) : "";
+    const alpha = this.alpha >= 0 && this.alpha < 255 ? this.alpha.toString(16) : "";
     return `#${this.red.toString(16)}${this.green.toString(16)}${this.blue.toString(16)}${alpha}`;
   }
   

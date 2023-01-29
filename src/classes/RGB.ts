@@ -27,7 +27,7 @@ export class RGB {
   
   public toString(): string {
     return this.alpha >= 0 && this.alpha < 1
-           ? `rgb(${this.red.toFixed(0)}, ${this.green.toFixed(0)}, ${this.blue.toFixed(0)}, ${this.alpha})`
+           ? `rgba(${this.red.toFixed(0)}, ${this.green.toFixed(0)}, ${this.blue.toFixed(0)}, ${this.alpha})`
            : `rgb(${this.red.toFixed(0)}, ${this.green.toFixed(0)}, ${this.blue.toFixed(0)})`;
   }
   
@@ -54,8 +54,8 @@ export class RGB {
     const lightness = value - chroma / 2;
     const hue = this.getHue(value, chroma);
     const saturation = lightness !== 0 && lightness !== 255 ? (value - lightness) / Math.min(lightness, 255 - lightness) : 0;
-    
-    return new HSL(hue, saturation / 255, lightness / 255);
+  
+    return new HSL(hue, saturation, lightness / 255);
   }
   
   public toHWB() {
@@ -93,7 +93,7 @@ export class RGB {
     const cyan = (255 - this.red - black) / (255 - black);
     const magenta = (255 - this.green - black) / (255 - black);
     const yellow = (255 - this.blue - black) / (255 - black);
-    
-    return new CMYK(black / 255, cyan / 255, magenta / 255, yellow / 255, this.alpha);
+  
+    return new CMYK(cyan, magenta, yellow, black / 255, this.alpha);
   }
 }

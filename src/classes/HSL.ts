@@ -35,7 +35,7 @@ export class HSL {
     const green = this.toRGBDecimal(HSL2RGBDecimalType.GREEN);
     const blue = this.toRGBDecimal(HSL2RGBDecimalType.BLUE);
     
-    return new RGB(red, green, blue, this.alpha);
+    return new RGB(red * 255, green * 255, blue * 255, this.alpha);
   }
   
   private toRGBDecimal(n: HSL2RGBDecimalType): number {
