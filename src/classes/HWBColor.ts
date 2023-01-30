@@ -11,15 +11,19 @@ export class HWBColor {
   constructor(hue: number, whiteness: number, blackness: number, alpha: number = 1) {
     if (hue < 0 || hue > 360) throw new Error("Hue value must be a number between 0 and 360");
     this.hue = hue;
-    
+  
     if (whiteness < 0 || whiteness > 1) throw new Error("Whiteness value must be a number between 0 and 1");
     this.whiteness = whiteness;
-    
+  
     if (blackness < 0 || blackness > 1) throw new Error("Blackness value must be a number between 0 and 1");
     this.blackness = blackness;
-    
+  
     if (alpha < 0 || alpha > 1) throw new Error("Alpha channel must be a number between 0 and 1");
     this.alpha = alpha;
+  }
+  
+  public equalTo(value: HWBColor) {
+    return this.hue === value.hue && this.whiteness === value.whiteness && this.blackness === value.blackness && this.alpha === value.alpha;
   }
   
   public toString(): string {

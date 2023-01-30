@@ -13,14 +13,18 @@ export class HSVColor {
   constructor(hue: number, saturation: number, value: number, alpha: number = 1) {
     if (hue < 0 || hue > 360) throw new Error("Hue value must be a number between 0 and 360");
     this.hue = hue;
-    
+  
     if (saturation < 0 || saturation > 1) throw new Error("Saturation value must be a number between 0 and 1");
     this.saturation = saturation;
-    
+  
     if (value < 0 || value > 1) throw new Error("Value must be a number between 0 and 1");
     this.value = value;
-    
+  
     this.alpha = alpha;
+  }
+  
+  public equalTo(value: HSVColor) {
+    return this.hue === value.hue && this.saturation === value.saturation && this.value === value.value && this.alpha === value.alpha;
   }
   
   public toString(): string {

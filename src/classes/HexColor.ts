@@ -37,6 +37,10 @@ export class HexColor {
     }
   }
   
+  public equalTo(value: HexColor) {
+    return this.red === value.red && this.green === value.green && this.blue === value.blue && this.alpha === value.alpha;
+  }
+  
   public toString(): string {
     return this.alpha === 255 ? this.toHexString() : this.toHexAString();
   }
@@ -67,5 +71,9 @@ export class HexColor {
   
   public toCMYK() {
     return this.toRGB().toCMYK();
+  }
+  
+  public static sanitize(hex: string) {
+    return `#${hex.replace(/[^A-F0-9]/gi, "").slice(0, 8).padEnd(6, "0").padEnd(8, "f").toLowerCase()}`;
   }
 }
