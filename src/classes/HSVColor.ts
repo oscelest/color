@@ -61,14 +61,14 @@ export class HSVColor {
     const lightness = this.value * (1 - this.saturation / 2);
     const saturation = lightness !== 0 && lightness !== 1 ? (this.value - lightness) / Math.min(lightness, 1 - lightness) : 0;
   
-    return new HSLColor(this.hue, saturation, lightness);
+    return new HSLColor(this.hue, saturation, lightness, this.alpha);
   }
   
   public toHWB() {
     const whiteness = this.value * (1 - this.saturation);
     const blackness = 1 - this.value;
   
-    return new HWBColor(this.hue, whiteness, blackness);
+    return new HWBColor(this.hue, whiteness, blackness, this.alpha);
   }
   
   public toCMYK() {

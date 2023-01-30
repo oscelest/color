@@ -61,7 +61,7 @@ export class HSLColor {
     const value = this.lightness + this.saturation * Math.min(this.lightness, 1 - this.lightness);
     const saturation = value !== 0 ? 2 * (1 - this.lightness / value) : 0;
   
-    return new HSVColor(this.hue, saturation, value);
+    return new HSVColor(this.hue, saturation, value, this.alpha);
   }
   
   public toHWB() {

@@ -55,7 +55,7 @@ export class RGBColor {
     const hue = this.getHue(value, chroma);
     const saturation = value !== 0 ? chroma / value : 0;
   
-    return new HSVColor(hue, saturation, value / 255);
+    return new HSVColor(hue, saturation, value / 255, this.alpha);
   }
   
   public toHSL() {
@@ -65,7 +65,7 @@ export class RGBColor {
     const hue = this.getHue(value, chroma);
     const saturation = lightness !== 0 && lightness !== 255 ? (value - lightness) / Math.min(lightness, 255 - lightness) : 0;
   
-    return new HSLColor(hue, saturation, lightness / 255);
+    return new HSLColor(hue, saturation, lightness / 255, this.alpha);
   }
   
   public toHWB() {
