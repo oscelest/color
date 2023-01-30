@@ -23,9 +23,6 @@ export default [
         name:    Package.name.replace(/^@noxy\//, ""),
         file:    "dist/umd/index.js",
         format:  "umd",
-        globals: {
-          "react": "React",
-        },
       },
     ],
     plugins: [
