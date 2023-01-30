@@ -1,7 +1,7 @@
 {
   "name": "@noxy/color",
   "author": "oscelest",
-  "version": "0.3.1",
+  "version": "1.0.0",
   "description": "Library handling different kinds of colors.",
   "license": "MIT",
   "repository": {
