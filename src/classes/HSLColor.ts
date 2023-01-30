@@ -12,14 +12,18 @@ export class HSLColor {
   constructor(hue: number, saturation: number, lightness: number, alpha: number = 1) {
     if (hue < 0 || hue > 360) throw new Error("Hue value must be a number between 0 and 360");
     this.hue = hue;
-    
+  
     if (saturation < 0 || saturation > 1) throw new Error("Saturation value must be a number between 0 and 1");
     this.saturation = saturation;
-    
+  
     if (lightness < 0 || lightness > 1) throw new Error("Lightness value must be a number between 0 and 1");
     this.lightness = lightness;
-    
+  
     this.alpha = alpha;
+  }
+  
+  public equalTo(value: HSLColor) {
+    return this.hue === value.hue && this.saturation === value.saturation && this.lightness === value.lightness && this.alpha === value.alpha;
   }
   
   public toString(): string {

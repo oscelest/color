@@ -14,17 +14,20 @@ export class RGBColor {
   constructor(red: number, green: number, blue: number, alpha: number = 1) {
     if (red < 0 || red > 255) throw new Error("Red color must be a number between 0 and 255");
     this.red = red;
-    
+  
     if (green < 0 || green > 255) throw new Error("Green color must be a number between 0 and 255");
     this.green = green;
-    
+  
     if (blue < 0 || blue > 255) throw new Error("Blue color must be a number between 0 and 255");
     this.blue = blue;
-    
+  
     if (alpha < 0 || alpha > 1) throw new Error("Alpha channel must be a number between 0 and 1");
     this.alpha = alpha;
   }
   
+  public equalTo(value: RGBColor) {
+    return this.red === value.red && this.green === value.green && this.blue === value.blue && this.alpha === value.alpha;
+  }
   
   public toString(): string {
     return this.alpha === 1 ? this.toRGBString() : this.toRGBAString();

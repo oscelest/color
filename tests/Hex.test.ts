@@ -20,6 +20,15 @@ test("Hex (alpha) Init", () => {
   expect(alpha).toBe(204);
 });
 
+test("Sanitize hex", () => {
+  const hex = HexColor.sanitize("asdf5435tlægdfklæ43");
+  expect(hex).toBe("#adf5435d");
+});
+
+test("Sanitize hex (with #)", () => {
+  const hex = HexColor.sanitize("#ig43okfpej239jfc32k1o");
+  expect(hex).toBe("#43fe239f");
+});
 
 test("Hex to CMYK", () => {
   const hex = new HexColor(default_value);
