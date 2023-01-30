@@ -3,11 +3,11 @@ import {RGBColor} from "./RGBColor";
 
 export class CMYKColor {
   
-  public cyan: number;
-  public magenta: number;
-  public yellow: number;
-  public black: number;
-  public alpha: number;
+  public readonly cyan: number;
+  public readonly magenta: number;
+  public readonly yellow: number;
+  public readonly black: number;
+  public readonly alpha: number;
   
   constructor(cyan: number, magenta: number, yellow: number, black: number, alpha: number = 1) {
     if (cyan < 0 || cyan > 1) throw new Error("Cyan color must be a number between 0 and 1");
@@ -27,9 +27,15 @@ export class CMYKColor {
   }
   
   public toString(): string {
-    return this.alpha >= 0 && this.alpha < 1
-           ? `cmyk(${(this.cyan * 100)}%, ${this.magenta * 100}%, ${this.yellow * 100}%, ${this.black * 100}%, ${this.alpha})`
-           : `cmyk(${(this.cyan * 100)}%, ${this.magenta * 100}%, ${this.yellow * 100}%, ${this.black * 100}%)`;
+    return this.alpha === 1 ? this.toCMYKString() : this.toCMYKAString();
+  }
+  
+  public toCMYKString() {
+    return `cmyk(${(this.cyan * 100)}%, ${this.magenta * 100}%, ${this.yellow * 100}%, ${this.black * 100}%)`;
+  }
+  
+  public toCMYKAString() {
+    return `cmyka(${(this.cyan * 100)}%, ${this.magenta * 100}%, ${this.yellow * 100}%, ${this.black * 100}%, ${this.alpha})`;
   }
   
   public toHex(): HexColor {
@@ -40,7 +46,7 @@ export class CMYKColor {
     const red = 255 * (1 - this.cyan) * (1 - this.black);
     const green = 255 * (1 - this.magenta) * (1 - this.black);
     const blue = 255 * (1 - this.yellow) * (1 - this.black);
-  
+    
     return new RGBColor(red, green, blue, this.alpha);
   }
   

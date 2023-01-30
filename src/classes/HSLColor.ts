@@ -4,10 +4,10 @@ import {RGBColor} from "./RGBColor";
 
 export class HSLColor {
   
-  public hue: number;
-  public saturation: number;
-  public lightness: number;
-  public alpha: number;
+  public readonly hue: number;
+  public readonly saturation: number;
+  public readonly lightness: number;
+  public readonly alpha: number;
   
   constructor(hue: number, saturation: number, lightness: number, alpha: number = 1) {
     if (hue < 0 || hue > 360) throw new Error("Hue value must be a number between 0 and 360");
@@ -23,7 +23,15 @@ export class HSLColor {
   }
   
   public toString(): string {
+    return this.alpha === 1 ? this.toHSLString() : this.toHSLAString();
+  }
+  
+  public toHSLString() {
     return `hsl(${this.hue}deg, ${this.saturation * 100}%, ${this.lightness * 100}%)`;
+  }
+  
+  public toHSLAString() {
+    return `hsla(${this.hue}deg, ${this.saturation * 100}%, ${this.lightness * 100}%, ${this.alpha})`;
   }
   
   public toHex() {

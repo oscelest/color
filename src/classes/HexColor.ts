@@ -38,8 +38,15 @@ export class HexColor {
   }
   
   public toString(): string {
-    const alpha = this.alpha >= 0 && this.alpha < 255 ? this.alpha.toString(16) : "";
-    return `#${this.red.toString(16)}${this.green.toString(16)}${this.blue.toString(16)}${alpha}`;
+    return this.alpha === 255 ? this.toHexString() : this.toHexAString();
+  }
+  
+  public toHexString() {
+    return `#${this.red.toString(16)}${this.green.toString(16)}${this.blue.toString(16)}`;
+  }
+  
+  public toHexAString() {
+    return `#${this.red.toString(16)}${this.green.toString(16)}${this.blue.toString(16)}${this.alpha.toString(16)}`;
   }
   
   public toRGB(): RGBColor {

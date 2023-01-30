@@ -5,10 +5,10 @@ import {RGBColor} from "./RGBColor";
 
 export class HSVColor {
   
-  public hue: number;
-  public saturation: number;
-  public value: number;
-  public alpha: number;
+  public readonly hue: number;
+  public readonly saturation: number;
+  public readonly value: number;
+  public readonly alpha: number;
   
   constructor(hue: number, saturation: number, value: number, alpha: number = 1) {
     if (hue < 0 || hue > 360) throw new Error("Hue value must be a number between 0 and 360");
@@ -24,7 +24,15 @@ export class HSVColor {
   }
   
   public toString(): string {
+    return this.alpha === 1 ? this.toHSVString() : this.toHSVAString();
+  }
+  
+  public toHSVString() {
     return `hsv(${this.hue}deg, ${this.saturation * 100}%, ${this.value * 100}%)`;
+  }
+  
+  public toHSVAString() {
+    return `hsva(${this.hue}deg, ${this.saturation * 100}%, ${this.value * 100}%, ${this.alpha})`;
   }
   
   public toHex() {

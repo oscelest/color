@@ -3,10 +3,10 @@ import {HSVColor} from "./HSVColor";
 
 export class HWBColor {
   
-  public hue: number;
-  public whiteness: number;
-  public blackness: number;
-  public alpha: number;
+  public readonly hue: number;
+  public readonly whiteness: number;
+  public readonly blackness: number;
+  public readonly alpha: number;
   
   constructor(hue: number, whiteness: number, blackness: number, alpha: number = 1) {
     if (hue < 0 || hue > 360) throw new Error("Hue value must be a number between 0 and 360");
@@ -23,9 +23,15 @@ export class HWBColor {
   }
   
   public toString(): string {
-    return this.alpha >= 0 && this.alpha < 1
-           ? `hwba(${this.hue}deg, ${this.whiteness * 100}%, ${this.blackness * 100}%, ${this.alpha})`
-           : `hwb(${this.hue}deg, ${this.whiteness * 100}%, ${this.blackness * 100}%)`;
+    return this.alpha === 1 ? this.toHWBString() : this.toHWBAString();
+  }
+  
+  public toHWBString() {
+    return `hwb(${this.hue}deg, ${this.whiteness * 100}%, ${this.blackness * 100}%)`;
+  }
+  
+  public toHWBAString() {
+    return `hwba(${this.hue}deg, ${this.whiteness * 100}%, ${this.blackness * 100}%, ${this.alpha})`;
   }
   
   public toHex(): HexColor {

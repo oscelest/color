@@ -6,10 +6,10 @@ import {HWBColor} from "./HWBColor";
 
 export class RGBColor {
   
-  public red: number;
-  public green: number;
-  public blue: number;
-  public alpha: number;
+  public readonly red: number;
+  public readonly green: number;
+  public readonly blue: number;
+  public readonly alpha: number;
   
   constructor(red: number, green: number, blue: number, alpha: number = 1) {
     if (red < 0 || red > 255) throw new Error("Red color must be a number between 0 and 255");
@@ -25,10 +25,17 @@ export class RGBColor {
     this.alpha = alpha;
   }
   
+  
   public toString(): string {
-    return this.alpha >= 0 && this.alpha < 1
-           ? `rgba(${this.red.toFixed(0)}, ${this.green.toFixed(0)}, ${this.blue.toFixed(0)}, ${this.alpha})`
-           : `rgb(${this.red.toFixed(0)}, ${this.green.toFixed(0)}, ${this.blue.toFixed(0)})`;
+    return this.alpha === 1 ? this.toRGBString() : this.toRGBAString();
+  }
+  
+  public toRGBString() {
+    return `rgb(${this.red.toFixed(0)}, ${this.green.toFixed(0)}, ${this.blue.toFixed(0)})`;
+  }
+  
+  public toRGBAString() {
+    return `rgba(${this.red.toFixed(0)}, ${this.green.toFixed(0)}, ${this.blue.toFixed(0)}, ${this.alpha})`;
   }
   
   public toHex(): HexColor {
