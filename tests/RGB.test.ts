@@ -24,10 +24,17 @@ test("RGB to CMYK", () => {
   expect(TestUtility.toPrecision(yellow)).toBe(0.85);
   expect(TestUtility.toPrecision(black)).toBe(0.25);
 });
+
 test("RGB to Hex", () => {
   const hex = default_value.toHex();
   
   expect(hex.toString()).toBe("#bf6b1dab");
+});
+
+test("RGB to Hex (leading 0)", () => {
+  const rgb = new RGBColor(5, 5, 5, 0.02);
+  
+  expect(rgb.toHex().toString()).toBe("#05050505");
 });
 
 test("RGB to HSL", () => {

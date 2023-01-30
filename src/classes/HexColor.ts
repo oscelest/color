@@ -37,6 +37,22 @@ export class HexColor {
     }
   }
   
+  public getRedString() {
+    return this.red.toString(16).padStart(2, "0");
+  }
+  
+  public getGreenString() {
+    return this.green.toString(16).padStart(2, "0");
+  }
+  
+  public getBlueString() {
+    return this.blue.toString(16).padStart(2, "0");
+  }
+  
+  public getAlphaString() {
+    return this.alpha.toString(16).padStart(2, "0");
+  }
+  
   public equalTo(value: HexColor) {
     return this.red === value.red && this.green === value.green && this.blue === value.blue && this.alpha === value.alpha;
   }
@@ -46,11 +62,11 @@ export class HexColor {
   }
   
   public toHexString() {
-    return `#${this.red.toString(16)}${this.green.toString(16)}${this.blue.toString(16)}`;
+    return `#${this.getRedString()}${this.getGreenString()}${this.getBlueString()}`;
   }
   
   public toHexAString() {
-    return `#${this.red.toString(16)}${this.green.toString(16)}${this.blue.toString(16)}${this.alpha.toString(16)}`;
+    return `${this.toHexString()}${this.getAlphaString()}`;
   }
   
   public toRGB(): RGBColor {
