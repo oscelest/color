@@ -21,9 +21,9 @@ Typescript types are already available in the library so no need to get external
 To use this library, simply import the function from the library and call it with the value you want converted to a boolean:
 
 ```typescript 
-import {color, RGB} from "@noxy/color";
+import {color, RGBColor} from "@noxy/color";
 
-const rgb: RGB = new RGB(255, 255, 255);
+const rgb = new RGBColor(255, 255, 255);
 
 // Writes the RGB value as CSS frieldly string: rgb(255, 255, 255)
 console.log(rgb);
