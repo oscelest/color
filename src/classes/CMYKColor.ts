@@ -1,7 +1,7 @@
-import {Hex} from "./Hex";
-import {RGB} from "./RGB";
+import {HexColor} from "./HexColor";
+import {RGBColor} from "./RGBColor";
 
-export class CMYK {
+export class CMYKColor {
   
   public cyan: number;
   public magenta: number;
@@ -32,7 +32,7 @@ export class CMYK {
            : `cmyk(${(this.cyan * 100)}%, ${this.magenta * 100}%, ${this.yellow * 100}%, ${this.black * 100}%)`;
   }
   
-  public toHex(): Hex {
+  public toHex(): HexColor {
     return this.toRGB().toHex();
   }
   
@@ -40,8 +40,8 @@ export class CMYK {
     const red = 255 * (1 - this.cyan) * (1 - this.black);
     const green = 255 * (1 - this.magenta) * (1 - this.black);
     const blue = 255 * (1 - this.yellow) * (1 - this.black);
-    
-    return new RGB(red, green, blue, this.alpha);
+  
+    return new RGBColor(red, green, blue, this.alpha);
   }
   
   public toHSV() {

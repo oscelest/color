@@ -1,7 +1,7 @@
-import {HSV} from "../src";
+import {HSVColor} from "../src";
 import {TestUtility} from "./TestUtility";
 
-const default_value = new HSV(180, 0.33, 0.66, 0.8);
+const default_value = new HSVColor(180, 0.33, 0.66, 0.8);
 
 test("HSV (no alpha) Init", () => {
   expect(default_value.hue).toBe(180);

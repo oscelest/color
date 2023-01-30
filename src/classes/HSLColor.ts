@@ -1,8 +1,8 @@
 import {HSL2RGBDecimalType} from "../enums";
-import {HSV} from "./HSV";
-import {RGB} from "./RGB";
+import {HSVColor} from "./HSVColor";
+import {RGBColor} from "./RGBColor";
 
-export class HSL {
+export class HSLColor {
   
   public hue: number;
   public saturation: number;
@@ -30,12 +30,12 @@ export class HSL {
     return this.toRGB().toHex();
   }
   
-  public toRGB(): RGB {
+  public toRGB(): RGBColor {
     const red = this.toRGBDecimal(HSL2RGBDecimalType.RED);
     const green = this.toRGBDecimal(HSL2RGBDecimalType.GREEN);
     const blue = this.toRGBDecimal(HSL2RGBDecimalType.BLUE);
     
-    return new RGB(red * 255, green * 255, blue * 255, this.alpha);
+    return new RGBColor(red * 255, green * 255, blue * 255, this.alpha);
   }
   
   private toRGBDecimal(n: HSL2RGBDecimalType): number {
@@ -48,8 +48,8 @@ export class HSL {
   public toHSV() {
     const value = this.lightness + this.saturation * Math.min(this.lightness, 1 - this.lightness);
     const saturation = value !== 0 ? 2 * (1 - this.lightness / value) : 0;
-    
-    return new HSV(this.hue, saturation, value);
+  
+    return new HSVColor(this.hue, saturation, value);
   }
   
   public toHWB() {

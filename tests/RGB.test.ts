@@ -1,7 +1,7 @@
-import {RGB} from "../src";
+import {RGBColor} from "../src";
 import {TestUtility} from "./TestUtility";
 
-const default_value = new RGB(191, 107, 29, 0.67);
+const default_value = new RGBColor(191, 107, 29, 0.67);
 
 test("RGB (no alpha) Init", () => {
   expect(default_value.red).toBe(191);

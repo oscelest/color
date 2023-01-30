@@ -1,6 +1,6 @@
-import {RGB} from "./RGB";
+import {RGBColor} from "./RGBColor";
 
-export class Hex {
+export class HexColor {
   
   public readonly red: number;
   public readonly green: number;
@@ -42,8 +42,8 @@ export class Hex {
     return `#${this.red.toString(16)}${this.green.toString(16)}${this.blue.toString(16)}${alpha}`;
   }
   
-  public toRGB(): RGB {
-    return new RGB(this.red, this.green, this.blue, this.alpha / 255);
+  public toRGB(): RGBColor {
+    return new RGBColor(this.red, this.green, this.blue, this.alpha / 255);
   }
   
   public toHSV() {

@@ -1,10 +1,10 @@
-import {CMYK} from "./CMYK";
-import {Hex} from "./Hex";
-import {HSL} from "./HSL";
-import {HSV} from "./HSV";
-import {HWB} from "./HWB";
+import {CMYKColor} from "./CMYKColor";
+import {HexColor} from "./HexColor";
+import {HSLColor} from "./HSLColor";
+import {HSVColor} from "./HSVColor";
+import {HWBColor} from "./HWBColor";
 
-export class RGB {
+export class RGBColor {
   
   public red: number;
   public green: number;
@@ -31,12 +31,12 @@ export class RGB {
            : `rgb(${this.red.toFixed(0)}, ${this.green.toFixed(0)}, ${this.blue.toFixed(0)})`;
   }
   
-  public toHex(): Hex {
+  public toHex(): HexColor {
     const red = Math.round(this.red).toString(16);
     const blue = Math.round(this.blue).toString(16);
     const green = Math.round(this.green).toString(16);
     const alpha = Math.round(this.alpha * 255).toString(16);
-    return new Hex(`#${red}${green}${blue}${alpha}`);
+    return new HexColor(`#${red}${green}${blue}${alpha}`);
   }
   
   public toHSV() {
@@ -44,8 +44,8 @@ export class RGB {
     const chroma = value - Math.min(this.red, this.green, this.blue);
     const hue = this.getHue(value, chroma);
     const saturation = value !== 0 ? chroma / value : 0;
-    
-    return new HSV(hue, saturation, value / 255);
+  
+    return new HSVColor(hue, saturation, value / 255);
   }
   
   public toHSL() {
@@ -55,7 +55,7 @@ export class RGB {
     const hue = this.getHue(value, chroma);
     const saturation = lightness !== 0 && lightness !== 255 ? (value - lightness) / Math.min(lightness, 255 - lightness) : 0;
   
-    return new HSL(hue, saturation, lightness / 255);
+    return new HSLColor(hue, saturation, lightness / 255);
   }
   
   public toHWB() {
@@ -64,8 +64,8 @@ export class RGB {
     const chroma = value - whiteness;
     const blackness = 255 - value;
     const hue = this.getHue(value, chroma);
-    
-    return new HWB(hue, whiteness / 255, blackness / 255, this.alpha);
+  
+    return new HWBColor(hue, whiteness / 255, blackness / 255, this.alpha);
   }
   
   private getHue(value: number, chroma: number): number {
@@ -94,6 +94,6 @@ export class RGB {
     const magenta = (255 - this.green - black) / (255 - black);
     const yellow = (255 - this.blue - black) / (255 - black);
   
-    return new CMYK(cyan, magenta, yellow, black / 255, this.alpha);
+    return new CMYKColor(cyan, magenta, yellow, black / 255, this.alpha);
   }
 }

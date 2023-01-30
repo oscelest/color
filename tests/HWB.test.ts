@@ -1,7 +1,7 @@
-import {HWB} from "../src";
+import {HWBColor} from "../src";
 import {TestUtility} from "./TestUtility";
 
-const default_value = new HWB(120, 0.1, 0.15, 0.55);
+const default_value = new HWBColor(120, 0.1, 0.15, 0.55);
 
 test("HWB (no alpha) Init", () => {
   expect(default_value.hue).toBe(120);

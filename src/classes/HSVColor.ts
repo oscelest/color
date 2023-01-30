@@ -1,9 +1,9 @@
 import {HSV2RGBDecimalType} from "../enums";
-import {HSL} from "./HSL";
-import {HWB} from "./HWB";
-import {RGB} from "./RGB";
+import {HSLColor} from "./HSLColor";
+import {HWBColor} from "./HWBColor";
+import {RGBColor} from "./RGBColor";
 
-export class HSV {
+export class HSVColor {
   
   public hue: number;
   public saturation: number;
@@ -31,12 +31,12 @@ export class HSV {
     return this.toRGB().toHex();
   }
   
-  public toRGB(): RGB {
+  public toRGB(): RGBColor {
     const red = this.toRGBDecimal(HSV2RGBDecimalType.RED);
     const green = this.toRGBDecimal(HSV2RGBDecimalType.GREEN);
     const blue = this.toRGBDecimal(HSV2RGBDecimalType.BLUE);
     
-    return new RGB(red * 255, green * 255, blue * 255, this.alpha);
+    return new RGBColor(red * 255, green * 255, blue * 255, this.alpha);
   }
   
   private toRGBDecimal(n: HSV2RGBDecimalType): number {
@@ -48,15 +48,15 @@ export class HSV {
   public toHSL() {
     const lightness = this.value * (1 - this.saturation / 2);
     const saturation = lightness !== 0 && lightness !== 1 ? (this.value - lightness) / Math.min(lightness, 1 - lightness) : 0;
-    
-    return new HSL(this.hue, saturation, lightness);
+  
+    return new HSLColor(this.hue, saturation, lightness);
   }
   
   public toHWB() {
     const whiteness = this.value * (1 - this.saturation);
     const blackness = 1 - this.value;
-    
-    return new HWB(this.hue, whiteness, blackness);
+  
+    return new HWBColor(this.hue, whiteness, blackness);
   }
   
   public toCMYK() {

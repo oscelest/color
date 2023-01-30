@@ -1,7 +1,7 @@
-import {Hex} from "./Hex";
-import {HSV} from "./HSV";
+import {HexColor} from "./HexColor";
+import {HSVColor} from "./HSVColor";
 
-export class HWB {
+export class HWBColor {
   
   public hue: number;
   public whiteness: number;
@@ -28,7 +28,7 @@ export class HWB {
            : `hwb(${this.hue}deg, ${this.whiteness * 100}%, ${this.blackness * 100}%)`;
   }
   
-  public toHex(): Hex {
+  public toHex(): HexColor {
     return this.toRGB().toHex();
   }
   
@@ -39,8 +39,8 @@ export class HWB {
   public toHSV() {
     const saturation = 1 - this.whiteness / (1 - this.blackness);
     const value = 1 - this.blackness;
-    
-    return new HSV(this.hue, saturation, value);
+  
+    return new HSVColor(this.hue, saturation, value);
   }
   
   public toHSL() {

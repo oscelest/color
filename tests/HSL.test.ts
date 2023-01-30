@@ -1,7 +1,7 @@
-import {HSL} from "../src";
+import {HSLColor} from "../src";
 import {TestUtility} from "./TestUtility";
 
-const default_value = new HSL(180, 0.33, 0.66, 0.3);
+const default_value = new HSLColor(180, 0.33, 0.66, 0.3);
 
 test("HSL (no alpha) Init", () => {
   expect(default_value.hue).toBe(180);

@@ -1,10 +1,10 @@
-import {Hex} from "../src";
+import {HexColor} from "../src";
 import {TestUtility} from "./TestUtility";
 
 const default_value = "#a12bc3";
 
 test("Hex (no alpha) Init", () => {
-  const {red, blue, green} = new Hex(default_value);
+  const {red, blue, green} = new HexColor(default_value);
   
   expect(red).toBe(161);
   expect(green).toBe(43);
@@ -12,7 +12,7 @@ test("Hex (no alpha) Init", () => {
 });
 
 test("Hex (alpha) Init", () => {
-  const {red, blue, green, alpha} = new Hex(`${default_value}cc`);
+  const {red, blue, green, alpha} = new HexColor(`${default_value}cc`);
   
   expect(red).toBe(161);
   expect(green).toBe(43);
@@ -22,7 +22,7 @@ test("Hex (alpha) Init", () => {
 
 
 test("Hex to CMYK", () => {
-  const hex = new Hex(default_value);
+  const hex = new HexColor(default_value);
   const {cyan, magenta, yellow, black} = hex.toCMYK();
   
   expect(TestUtility.toPrecision(cyan)).toBe(0.17);
@@ -32,7 +32,7 @@ test("Hex to CMYK", () => {
 });
 
 test("Hex to HSL", () => {
-  const hex = new Hex(default_value);
+  const hex = new HexColor(default_value);
   const {hue, saturation, lightness} = hex.toHSL();
   
   expect(Math.round(hue)).toBe(287);
@@ -41,7 +41,7 @@ test("Hex to HSL", () => {
 });
 
 test("Hex to HSV", () => {
-  const hex = new Hex(default_value);
+  const hex = new HexColor(default_value);
   const {hue, saturation, value} = hex.toHSV();
   
   expect(Math.round(hue)).toBe(287);
@@ -50,7 +50,7 @@ test("Hex to HSV", () => {
 });
 
 test("Hex to HWB", () => {
-  const hex = new Hex(default_value);
+  const hex = new HexColor(default_value);
   const {hue, whiteness, blackness} = hex.toHWB();
   
   expect(Math.round(hue)).toBe(287);
@@ -59,7 +59,7 @@ test("Hex to HWB", () => {
 });
 
 test("Hex to RGB", () => {
-  const hex = new Hex(default_value);
+  const hex = new HexColor(default_value);
   const {red, green, blue} = hex.toRGB();
   
   expect(Math.round(red)).toBe(161);
