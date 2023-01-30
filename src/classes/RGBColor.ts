@@ -42,10 +42,10 @@ export class RGBColor {
   }
   
   public toHex(): HexColor {
-    const red = Math.round(this.red).toString(16);
-    const blue = Math.round(this.blue).toString(16);
-    const green = Math.round(this.green).toString(16);
-    const alpha = Math.round(this.alpha * 255).toString(16);
+    const red = Math.round(this.red).toString(16).padStart(2, "0");
+    const blue = Math.round(this.blue).toString(16).padStart(2, "0");
+    const green = Math.round(this.green).toString(16).padStart(2, "0");
+    const alpha = Math.round(this.alpha * 255).toString(16).padStart(2, "0");
     return new HexColor(`#${red}${green}${blue}${alpha}`);
   }
   

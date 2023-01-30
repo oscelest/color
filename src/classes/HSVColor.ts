@@ -54,7 +54,7 @@ export class HSVColor {
   private toRGBDecimal(n: HSV2RGBDecimalType): number {
     const k = (n + this.hue / 60) % 6;
     
-    return this.value - this.value * this.saturation * Math.max(Math.min(k, 4 - k, 1), 0);
+    return this.value - this.value * this.saturation * Math.max(0, Math.min(k, 4 - k, 1));
   }
   
   public toHSL() {
