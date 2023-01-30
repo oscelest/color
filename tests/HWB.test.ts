@@ -1,12 +1,19 @@
 import {HWB} from "../src";
 import {TestUtility} from "./TestUtility";
 
-const default_value = new HWB(120, 0.1, 0.15);
+const default_value = new HWB(120, 0.1, 0.15, 0.55);
 
 test("HWB (no alpha) Init", () => {
   expect(default_value.hue).toBe(120);
   expect(default_value.whiteness).toBe(0.10);
   expect(default_value.blackness).toBe(0.15);
+});
+
+test("HWB (alpha) Init", () => {
+  expect(default_value.hue).toBe(120);
+  expect(default_value.whiteness).toBe(0.10);
+  expect(default_value.blackness).toBe(0.15);
+  expect(default_value.alpha).toBe(0.55);
 });
 
 test("HWB to CMYK", () => {

@@ -1,12 +1,19 @@
 import {RGB} from "../src";
 import {TestUtility} from "./TestUtility";
 
-const default_value = new RGB(191, 107, 29);
+const default_value = new RGB(191, 107, 29, 0.67);
 
 test("RGB (no alpha) Init", () => {
   expect(default_value.red).toBe(191);
   expect(default_value.green).toBe(107);
   expect(default_value.blue).toBe(29);
+});
+
+test("RGB (alpha) Init", () => {
+  expect(default_value.red).toBe(191);
+  expect(default_value.green).toBe(107);
+  expect(default_value.blue).toBe(29);
+  expect(default_value.alpha).toBe(0.67);
 });
 
 test("RGB to CMYK", () => {
@@ -20,7 +27,7 @@ test("RGB to CMYK", () => {
 test("RGB to Hex", () => {
   const hex = default_value.toHex();
   
-  expect(hex.toString()).toBe("#bf6b1d");
+  expect(hex.toString()).toBe("#bf6b1dab");
 });
 
 test("RGB to HSL", () => {

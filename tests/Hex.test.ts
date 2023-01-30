@@ -11,10 +11,19 @@ test("Hex (no alpha) Init", () => {
   expect(blue).toBe(195);
 });
 
+test("Hex (alpha) Init", () => {
+  const {red, blue, green, alpha} = new Hex(`${default_value}cc`);
+  
+  expect(red).toBe(161);
+  expect(green).toBe(43);
+  expect(blue).toBe(195);
+  expect(alpha).toBe(204);
+});
+
+
 test("Hex to CMYK", () => {
   const hex = new Hex(default_value);
   const {cyan, magenta, yellow, black} = hex.toCMYK();
-  console.log(hex, hex.toCMYK());
   
   expect(TestUtility.toPrecision(cyan)).toBe(0.17);
   expect(TestUtility.toPrecision(magenta)).toBe(0.78);

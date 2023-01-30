@@ -1,12 +1,19 @@
 import {HSL} from "../src";
 import {TestUtility} from "./TestUtility";
 
-const default_value = new HSL(180, 0.33, 0.66);
+const default_value = new HSL(180, 0.33, 0.66, 0.3);
 
 test("HSL (no alpha) Init", () => {
   expect(default_value.hue).toBe(180);
   expect(default_value.saturation).toBe(0.33);
   expect(default_value.lightness).toBe(0.66);
+});
+
+test("HSL (alpha) Init", () => {
+  expect(default_value.hue).toBe(180);
+  expect(default_value.saturation).toBe(0.33);
+  expect(default_value.lightness).toBe(0.66);
+  expect(default_value.alpha).toBe(0.3);
 });
 
 test("HSL to CMYK", () => {
@@ -21,7 +28,7 @@ test("HSL to CMYK", () => {
 test("HSL to Hex", () => {
   const hex = default_value.toHex();
   
-  expect(hex.toString()).toBe("#8cc5c5");
+  expect(hex.toString()).toBe("#8cc5c54d");
 });
 
 test("HSL to HSV", () => {
