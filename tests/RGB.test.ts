@@ -1,23 +1,39 @@
 import {RGBColor} from "../src";
 import {TestUtility} from "./TestUtility";
 
-const default_value = new RGBColor(191, 107, 29, 0.67);
+const black_value = new RGBColor(0, 0, 0, 1);
+const white_value = new RGBColor(255, 255, 255, 1);
+const color_value = new RGBColor(191, 107, 29, 0.67);
 
-test("RGB (no alpha) Init", () => {
-  expect(default_value.red).toBe(191);
-  expect(default_value.green).toBe(107);
-  expect(default_value.blue).toBe(29);
+test("RGB Init", () => {
+  expect(color_value.red).toBe(191);
+  expect(color_value.green).toBe(107);
+  expect(color_value.blue).toBe(29);
+  expect(color_value.alpha).toBe(0.67);
 });
 
-test("RGB (alpha) Init", () => {
-  expect(default_value.red).toBe(191);
-  expect(default_value.green).toBe(107);
-  expect(default_value.blue).toBe(29);
-  expect(default_value.alpha).toBe(0.67);
+// CMYK
+
+test("RGB to CMYK (black)", () => {
+  const {cyan, magenta, yellow, black} = black_value.toCMYK();
+  
+  expect(TestUtility.toPrecision(cyan)).toBe(0);
+  expect(TestUtility.toPrecision(magenta)).toBe(0);
+  expect(TestUtility.toPrecision(yellow)).toBe(0);
+  expect(TestUtility.toPrecision(black)).toBe(1);
 });
 
-test("RGB to CMYK", () => {
-  const {cyan, magenta, yellow, black} = default_value.toCMYK();
+test("RGB to CMYK (white)", () => {
+  const {cyan, magenta, yellow, black} = white_value.toCMYK();
+  
+  expect(TestUtility.toPrecision(cyan)).toBe(0);
+  expect(TestUtility.toPrecision(magenta)).toBe(0);
+  expect(TestUtility.toPrecision(yellow)).toBe(0);
+  expect(TestUtility.toPrecision(black)).toBe(0);
+});
+
+test("RGB to CMYK (color)", () => {
+  const {cyan, magenta, yellow, black} = color_value.toCMYK();
   
   expect(TestUtility.toPrecision(cyan)).toBe(0);
   expect(TestUtility.toPrecision(magenta)).toBe(0.44);
@@ -25,36 +41,105 @@ test("RGB to CMYK", () => {
   expect(TestUtility.toPrecision(black)).toBe(0.25);
 });
 
-test("RGB to Hex", () => {
-  const hex = default_value.toHex();
+// Hex
+
+test("RGB to Hex (black)", () => {
+  const hex = black_value.toHex();
   
-  expect(hex.toString()).toBe("#bf6b1dab");
+  expect(hex.getRedString()).toBe("00");
+  expect(hex.getGreenString()).toBe("00");
+  expect(hex.getBlueString()).toBe("00");
 });
 
-test("RGB to Hex (leading 0)", () => {
-  const rgb = new RGBColor(5, 5, 5, 0.02);
+test("RGB to Hex (white)", () => {
+  const hex = white_value.toHex();
   
-  expect(rgb.toHex().toString()).toBe("#05050505");
+  expect(hex.getRedString()).toBe("ff");
+  expect(hex.getGreenString()).toBe("ff");
+  expect(hex.getBlueString()).toBe("ff");
 });
 
-test("RGB to HSL", () => {
-  const {hue, saturation, lightness} = default_value.toHSL();
+test("RGB to Hex (color)", () => {
+  const hex = color_value.toHex();
+  
+  expect(hex.getRedString()).toBe("bf");
+  expect(hex.getGreenString()).toBe("6b");
+  expect(hex.getBlueString()).toBe("1d");
+  expect(hex.getAlphaString()).toBe("ab");
+});
+
+// HSL
+
+test("RGB to HSL (black)", () => {
+  const {hue, saturation, lightness} = black_value.toHSL();
+  
+  expect(Math.round(hue)).toBe(0);
+  expect(TestUtility.toPrecision(saturation)).toBe(0);
+  expect(TestUtility.toPrecision(lightness)).toBe(0);
+});
+
+test("RGB to HSL (white)", () => {
+  const {hue, saturation, lightness} = white_value.toHSL();
+  
+  expect(Math.round(hue)).toBe(0);
+  expect(TestUtility.toPrecision(saturation)).toBe(0);
+  expect(TestUtility.toPrecision(lightness)).toBe(1);
+});
+
+test("RGB to HSL (color)", () => {
+  const {hue, saturation, lightness} = color_value.toHSL();
   
   expect(Math.round(hue)).toBe(29);
   expect(TestUtility.toPrecision(saturation)).toBe(0.74);
   expect(TestUtility.toPrecision(lightness)).toBe(0.43);
 });
 
-test("RGB to HSV", () => {
-  const {hue, saturation, value} = default_value.toHSV();
+// HSV
+
+test("RGB to HSV (black)", () => {
+  const {hue, saturation, value} = black_value.toHSV();
+  
+  expect(Math.round(hue)).toBe(0);
+  expect(TestUtility.toPrecision(saturation)).toBe(0);
+  expect(TestUtility.toPrecision(value)).toBe(0);
+});
+
+test("RGB to HSV (white)", () => {
+  const {hue, saturation, value} = white_value.toHSV();
+  
+  expect(Math.round(hue)).toBe(0);
+  expect(TestUtility.toPrecision(saturation)).toBe(0);
+  expect(TestUtility.toPrecision(value)).toBe(1);
+});
+
+test("RGB to HSV (color)", () => {
+  const {hue, saturation, value} = color_value.toHSV();
   
   expect(Math.round(hue)).toBe(29);
   expect(TestUtility.toPrecision(saturation)).toBe(0.85);
   expect(TestUtility.toPrecision(value)).toBe(0.75);
 });
 
-test("RGB to HWB", () => {
-  const {hue, whiteness, blackness} = default_value.toHWB();
+// HWB
+
+test("RGB to HWB (black)", () => {
+  const {hue, whiteness, blackness} = black_value.toHWB();
+  
+  expect(Math.round(hue)).toBe(0);
+  expect(TestUtility.toPrecision(whiteness)).toBe(0);
+  expect(TestUtility.toPrecision(blackness)).toBe(1);
+});
+
+test("RGB to HWB (white)", () => {
+  const {hue, whiteness, blackness} = white_value.toHWB();
+  
+  expect(Math.round(hue)).toBe(0);
+  expect(TestUtility.toPrecision(whiteness)).toBe(1);
+  expect(TestUtility.toPrecision(blackness)).toBe(0);
+});
+
+test("RGB to HWB (color)", () => {
+  const {hue, whiteness, blackness} = color_value.toHWB();
   
   expect(Math.round(hue)).toBe(29);
   expect(TestUtility.toPrecision(whiteness)).toBe(0.11);

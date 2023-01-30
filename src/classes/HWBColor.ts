@@ -47,10 +47,10 @@ export class HWBColor {
   }
   
   public toHSV() {
-    const saturation = 1 - this.whiteness / (1 - this.blackness);
+    const saturation = this.blackness !== 1 ? 1 - this.whiteness / (1 - this.blackness) : 0;
     const value = 1 - this.blackness;
   
-    return new HSVColor(this.hue, saturation, value);
+    return new HSVColor(this.hue, saturation, value, this.alpha);
   }
   
   public toHSL() {

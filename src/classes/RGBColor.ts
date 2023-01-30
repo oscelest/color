@@ -100,9 +100,9 @@ export class RGBColor {
   
   public toCMYK() {
     const black = 255 - Math.max(this.red, this.green, this.blue);
-    const cyan = (255 - this.red - black) / (255 - black);
-    const magenta = (255 - this.green - black) / (255 - black);
-    const yellow = (255 - this.blue - black) / (255 - black);
+    const cyan = (255 - this.red - black) / Math.max(1, 255 - black);
+    const magenta = (255 - this.green - black) / Math.max(1, 255 - black);
+    const yellow = (255 - this.blue - black) / Math.max(1, 255 - black);
   
     return new CMYKColor(cyan, magenta, yellow, black / 255, this.alpha);
   }
