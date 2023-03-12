@@ -50,13 +50,6 @@ export class HSLColor {
     return new RGBColor(red * 255, green * 255, blue * 255, this.alpha);
   }
   
-  private toRGBDecimal(n: HSL2RGBDecimalType): number {
-    const k = (n + this.hue / 30) % 12;
-    const a = this.saturation * Math.min(this.lightness, 1 - this.lightness);
-    
-    return this.lightness - a * Math.max(-1, Math.min(k - 3, 9 - k, 1));
-  }
-  
   public toHSV() {
     const value = this.lightness + this.saturation * Math.min(this.lightness, 1 - this.lightness);
     const saturation = value !== 0 ? 2 * (1 - this.lightness / value) : 0;
@@ -70,5 +63,12 @@ export class HSLColor {
   
   public toCMYK() {
     return this.toRGB().toCMYK();
+  }
+  
+  private toRGBDecimal(n: HSL2RGBDecimalType): number {
+    const k = (n + this.hue / 30) % 12;
+    const a = this.saturation * Math.min(this.lightness, 1 - this.lightness);
+    
+    return this.lightness - a * Math.max(-1, Math.min(k - 3, 9 - k, 1));
   }
 }

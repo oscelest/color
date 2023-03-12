@@ -74,8 +74,17 @@ export class RGBColor {
     const chroma = value - whiteness;
     const blackness = 255 - value;
     const hue = this.getHue(value, chroma);
-  
+    
     return new HWBColor(hue, whiteness / 255, blackness / 255, this.alpha);
+  }
+  
+  public toCMYK() {
+    const black = 255 - Math.max(this.red, this.green, this.blue);
+    const cyan = (255 - this.red - black) / Math.max(1, 255 - black);
+    const magenta = (255 - this.green - black) / Math.max(1, 255 - black);
+    const yellow = (255 - this.blue - black) / Math.max(1, 255 - black);
+    
+    return new CMYKColor(cyan, magenta, yellow, black / 255, this.alpha);
   }
   
   private getHue(value: number, chroma: number): number {
@@ -96,14 +105,5 @@ export class RGBColor {
     }
     
     return 60 * (hue < 0 ? hue + 6 : hue);
-  }
-  
-  public toCMYK() {
-    const black = 255 - Math.max(this.red, this.green, this.blue);
-    const cyan = (255 - this.red - black) / Math.max(1, 255 - black);
-    const magenta = (255 - this.green - black) / Math.max(1, 255 - black);
-    const yellow = (255 - this.blue - black) / Math.max(1, 255 - black);
-  
-    return new CMYKColor(cyan, magenta, yellow, black / 255, this.alpha);
   }
 }

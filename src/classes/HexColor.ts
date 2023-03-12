@@ -37,6 +37,10 @@ export class HexColor {
     }
   }
   
+  public static sanitize(hex: string) {
+    return `#${hex.replace(/[^A-F0-9]/gi, "").slice(0, 8).padEnd(6, "0").padEnd(8, "f").toLowerCase()}`;
+  }
+  
   public getRedString() {
     return this.red.toString(16).padStart(2, "0");
   }
@@ -87,9 +91,5 @@ export class HexColor {
   
   public toCMYK() {
     return this.toRGB().toCMYK();
-  }
-  
-  public static sanitize(hex: string) {
-    return `#${hex.replace(/[^A-F0-9]/gi, "").slice(0, 8).padEnd(6, "0").padEnd(8, "f").toLowerCase()}`;
   }
 }

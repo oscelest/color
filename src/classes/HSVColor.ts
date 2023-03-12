@@ -51,12 +51,6 @@ export class HSVColor {
     return new RGBColor(red * 255, green * 255, blue * 255, this.alpha);
   }
   
-  private toRGBDecimal(n: HSV2RGBDecimalType): number {
-    const k = (n + this.hue / 60) % 6;
-    
-    return this.value - this.value * this.saturation * Math.max(0, Math.min(k, 4 - k, 1));
-  }
-  
   public toHSL() {
     const lightness = this.value * (1 - this.saturation / 2);
     const saturation = lightness !== 0 && lightness !== 1 ? (this.value - lightness) / Math.min(lightness, 1 - lightness) : 0;
@@ -67,11 +61,17 @@ export class HSVColor {
   public toHWB() {
     const whiteness = this.value * (1 - this.saturation);
     const blackness = 1 - this.value;
-  
+    
     return new HWBColor(this.hue, whiteness, blackness, this.alpha);
   }
   
   public toCMYK() {
     return this.toRGB().toCMYK();
+  }
+  
+  private toRGBDecimal(n: HSV2RGBDecimalType): number {
+    const k = (n + this.hue / 60) % 6;
+    
+    return this.value - this.value * this.saturation * Math.max(0, Math.min(k, 4 - k, 1));
   }
 }

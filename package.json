@@ -1,30 +1,30 @@
 {
-  "name": "@noxy/color",
-  "author": "oscelest",
-  "version": "1.0.4",
-  "description": "Library handling different kinds of colors.",
-  "license": "MIT",
-  "repository": {
+  "name":            "@noxy/color",
+  "author":          "oscelest",
+  "version":         "1.0.4",
+  "description":     "Library handling different kinds of colors.",
+  "license":         "MIT",
+  "repository":      {
     "type": "git",
-    "url": "git@github.com:oscelest/color.git"
+    "url":  "git@github.com:oscelest/color.git"
   },
-  "bugs": {
+  "bugs":            {
     "url": "https://github.com/oscelest/color/issues"
   },
-  "publishConfig": {
+  "publishConfig":   {
     "access": "public"
   },
-  "main": "dist/cjs/index.js",
-  "types": "dist/types/index.d.ts",
-  "module": "dist/esm/index.js",
-  "umd": "dist/umd/index.js",
-  "files": [
+  "main":            "dist/cjs/index.js",
+  "types":           "dist/types/index.d.ts",
+  "module":          "dist/esm/index.js",
+  "umd":             "dist/umd/index.js",
+  "files":           [
     "dist"
   ],
-  "scripts": {
+  "scripts":         {
     "update": "npx npm-check-updates -u && npm i",
-    "build": "rollup -c",
-    "test": "jest"
+    "build":  "rollup -c",
+    "test":   "jest"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs":          "^24.0.1",
@@ -32,8 +32,8 @@
     "@rollup/plugin-terser":            "^0.4.0",
     "@rollup/plugin-typescript":        "^11.0.0",
     "@types/jest":                      "^29.4.0",
-    "@types/node":                      "18.14.2",
-    "rollup":                           "^3.17.3",
+    "@types/node":                      "18.15.0",
+    "rollup":                           "^3.19.1",
     "rollup-plugin-dts":                "^5.2.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-postcss":            "^4.0.2",
